@@ -41,6 +41,7 @@ RUN apt-get install -y \
 #============================
 RUN apt-get update
 RUN apt-get install -y \
+    supervisor \
     libasound2 \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
@@ -59,7 +60,44 @@ RUN apt-get install -y \
     libxdamage1 \
     libxfixes3 \
     libxkbcommon0 \
-    libxrandr2
+    libxrandr2 \
+    libcanberra-gtk-module \
+    libcanberra-gtk3-module \
+    libegl-dev \
+    libpci-dev \
+    # install a lightweight window manager
+    fluxbox \
+    eterm \
+    # install pip
+    python3-pip \
+    # install xvfb/pyvirtualdisplay packages
+    xvfb \
+    xserver-xephyr \
+    tigervnc-standalone-server \
+    x11-utils \
+    gnumeric \
+    net-tools \
+    dbus-x11 \
+    libgl1-mesa-dri \
+    mesa-utils \
+    alsa-utils \
+    # install vnc server for remote access
+    x11vnc \
+    # tkinter is necessary to get the mouse position with pyautogui
+    python3-dev \
+    python3-tk \
+    # necessary to take screenshots with pyautogui
+    scrot \
+    gnome-screenshot \
+    # gui
+    xfce4 \
+    xfce4-terminal \
+    xterm \
+    libdbus-glib-1-2 \
+    xfonts-100dpi \
+    xfonts-75dpi \
+    tigervnc-common \
+    tigervnc-standalone-server
 
 #==========================
 # Install useful utilities
@@ -108,8 +146,9 @@ RUN rm -rf /var/lib/apt/lists/*
 # Set up SeleniumBase
 #=====================
 RUN pip install --upgrade pip setuptools wheel
-RUN pip install pyvirtualdisplay redis requests boto3 docker bs4 python-xlib
-RUN pip install seleniumbase pyautogui
+RUN pip install pyvirtualdisplay redis requests boto3 docker bs4 python-xlib python-dotenv
+RUN pip install selenium seleniumbase 
+RUN pip install mouseinfo pyautogui pillow
 
 #=======================
 # Download chromedriver
