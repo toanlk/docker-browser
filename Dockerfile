@@ -73,6 +73,7 @@ RUN apt-get install -y \
     # install xvfb/pyvirtualdisplay packages
     xvfb \
     xserver-xephyr \
+    xauth \
     tigervnc-standalone-server \
     x11-utils \
     gnumeric \
