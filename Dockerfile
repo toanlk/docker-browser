@@ -147,9 +147,8 @@ RUN rm -rf /var/lib/apt/lists/*
 # Set up SeleniumBase
 #=====================
 RUN pip install --upgrade pip setuptools wheel
-RUN pip install pyvirtualdisplay redis requests boto3 docker bs4 python-xlib python-dotenv
-RUN pip install selenium seleniumbase 
-RUN pip install mouseinfo pyautogui pillow
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 #=======================
 # Download chromedriver
